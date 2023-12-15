@@ -1,0 +1,31 @@
+{
+  "name": "John Doe",
+  "age": 30,
+  "isAdmin": true,
+  "phoneNumbers": [
+    "+1234567890",
+    "+44123456789"
+  ],
+  "favoriteFoods": [
+    "pizza",
+    "burgers",
+    "ice cream"
+  ],
+  "address": {
+    "street": "123 Main Street",
+    "city": "Anytown",
+    "state": "CA",
+    "zipCode": 90210,
+    "secondaryNestedAddress": {
+      "address": {
+        "street": "123 Not Main Street",
+        "city": "Anytown",
+        "state": "CA",
+        "zipCodes": [
+          90211,
+          90212
+        ]
+      }
+    }
+  }
+}
