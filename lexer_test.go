@@ -168,6 +168,17 @@ func TestSimpleJsonLexer_Execute(t *testing.T) {
 				{virtualType: RightSquaredParenthesis, content: "]"},
 			},
 		},
+		{
+			"should lex a null value",
+			args{"[null, false]"},
+			[]JsonToken{
+				{virtualType: LeftSquaredParenthesis, content: "["},
+				{virtualType: Null, content: nil},
+				{virtualType: Comma, content: ","},
+				{virtualType: Boolean, content: false},
+				{virtualType: RightSquaredParenthesis, content: "]"},
+			},
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

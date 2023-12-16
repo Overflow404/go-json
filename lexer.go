@@ -64,6 +64,11 @@ func (l SimpleJsonLexer) Execute(rawJson string) ([]JsonToken, error) {
 			i = i + 4
 		}
 
+		if (i+4) <= len(rawJson) && rawJson[i:i+4] == "null" {
+			result = append(result, JsonToken{virtualType: Null, content: nil})
+			i = i + 3
+		}
+
 		if unicode.IsNumber(rune(rawJson[i])) {
 			lastDigitIndex := lastDigitIndex(rawJson, i)
 
@@ -123,4 +128,5 @@ const (
 	String                  string = "String"
 	Boolean                 string = "Boolean"
 	Number                  string = "Number"
+	Null                    string = "Null"
 )
