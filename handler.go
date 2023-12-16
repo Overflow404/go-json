@@ -12,7 +12,7 @@ const (
 	RightCurlyParenthesis   string = "RightCurlyParenthesis"
 	LeftSquaredParenthesis  string = "LeftSquaredParenthesis"
 	RightSquaredParenthesis string = "RightSquaredParenthesis"
-	Semicolon               string = "Semicolon"
+	Colon                   string = "Colon"
 	Comma                   string = "Comma"
 	String                  string = "String"
 	Boolean                 string = "Boolean"
@@ -29,7 +29,7 @@ type LeftCurlyParenthesisHandler struct{}
 type RightCurlyParenthesisHandler struct{}
 type LeftSquaredParenthesisHandler struct{}
 type RightSquaredParenthesisHandler struct{}
-type SemicolonHandler struct{}
+type ColonHandler struct{}
 type CommaHandler struct{}
 type StringHandler struct{}
 type TrueHandler struct{}
@@ -70,12 +70,12 @@ func (h RightSquaredParenthesisHandler) Apply(_ string, tokens []JsonToken, base
 	return append(tokens, JsonToken{virtualType: RightSquaredParenthesis, content: "]"}), advancePointerTo(base, 1)
 }
 
-func (h SemicolonHandler) Eval(rawJson string, base int) bool {
+func (h ColonHandler) Eval(rawJson string, base int) bool {
 	return rawJson[base] == ':'
 }
 
-func (h SemicolonHandler) Apply(_ string, tokens []JsonToken, base int) ([]JsonToken, int) {
-	return append(tokens, JsonToken{virtualType: Semicolon, content: ":"}), advancePointerTo(base, 1)
+func (h ColonHandler) Apply(_ string, tokens []JsonToken, base int) ([]JsonToken, int) {
+	return append(tokens, JsonToken{virtualType: Colon, content: ":"}), advancePointerTo(base, 1)
 }
 
 func (h CommaHandler) Eval(rawJson string, base int) bool {

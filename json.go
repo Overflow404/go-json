@@ -45,7 +45,7 @@ func prettyPrint(tokens []JsonToken) string {
 		case Comma:
 			result.WriteString(",\n")
 			result.WriteString(strings.Repeat("  ", indent))
-		case Semicolon:
+		case Colon:
 			result.WriteString(": ")
 		default:
 			result.WriteString(fmt.Sprintf("(%s %v)", blueColor(token.virtualType), token.content))

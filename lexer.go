@@ -16,7 +16,7 @@ var handlers = []LexerHandler{
 	RightCurlyParenthesisHandler{},
 	LeftSquaredParenthesisHandler{},
 	RightSquaredParenthesisHandler{},
-	SemicolonHandler{},
+	ColonHandler{},
 	CommaHandler{},
 	StringHandler{},
 	TrueHandler{},
