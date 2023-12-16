@@ -1,4 +1,4 @@
-JSON validator
+⚠️Work in progress - JSON validator
 ==============
 
 *A simple JSON validator written in go*

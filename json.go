@@ -21,8 +21,7 @@ func main() {
 }
 
 func run(rawJson string, lexer JsonLexer) {
-	tokens, _ := lexer.Execute(rawJson)
-	fmt.Println(prettyPrint(tokens))
+	fmt.Println(prettyPrint(lexer.Execute(rawJson)))
 }
 
 func prettyPrint(tokens []JsonToken) string {
@@ -32,10 +31,10 @@ func prettyPrint(tokens []JsonToken) string {
 	for _, token := range tokens {
 		switch token.virtualType {
 		case LeftCurlyParenthesis:
-			result.WriteString(fmt.Sprintf("Object {\n%s", strings.Repeat("  ", indent+1)))
+			result.WriteString(fmt.Sprintf("%s {\n%s", redColor("Object"), strings.Repeat("  ", indent+1)))
 			indent++
 		case LeftSquaredParenthesis:
-			result.WriteString(fmt.Sprintf("Array [\n%s", strings.Repeat("  ", indent+1)))
+			result.WriteString(fmt.Sprintf("%s [\n%s", redColor("Array"), strings.Repeat("  ", indent+1)))
 			indent++
 		case RightCurlyParenthesis:
 			indent--
@@ -54,6 +53,10 @@ func prettyPrint(tokens []JsonToken) string {
 	}
 
 	return result.String()
+}
+
+func redColor(content interface{}) string {
+	return fmt.Sprintf("%s%v\x1b[0m", "\x1b[31m", content)
 }
 
 func blueColor(content interface{}) string {

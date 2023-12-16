@@ -183,14 +183,10 @@ func TestSimpleJsonLexer_Execute(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			l := SimpleJsonLexer{}
-			got, lexerError := l.Execute(tt.args.rawJson)
+			got := l.Execute(tt.args.rawJson)
 
 			if !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("\nExpected = %+v, \nActual = %+v", got, tt.want)
-			}
-
-			if lexerError != nil {
-				t.Errorf("Error = %v", lexerError)
+				t.Errorf("\nExpected = %+v, \nActual = %+v", tt.want, got)
 			}
 		})
 	}
